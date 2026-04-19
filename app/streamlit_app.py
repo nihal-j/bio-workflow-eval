@@ -180,7 +180,7 @@ if page == "📊 Run & Results":
             return f"background-color: {color}"
 
         st.dataframe(
-            df.style.applymap(color_overall, subset=["Overall"]),
+            df.style.map(color_overall, subset=["Overall"]),
             use_container_width=True,
             height=500,
         )
