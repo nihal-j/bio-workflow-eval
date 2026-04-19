@@ -1,0 +1,34 @@
+__pycache__/
+*.py[cod]
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+.env
+*.env
+
+# uv
+.python-version
+
+# outputs (keep the folder, not the contents)
+outputs/*
+!outputs/.gitkeep
+
+# notebooks checkpoints
+.ipynb_checkpoints/
+
+# pytest
+.pytest_cache/
+.ruff_cache/
+
+# macOS
+.DS_Store
+
+# editor
+.vscode/settings.json
+*.swp
