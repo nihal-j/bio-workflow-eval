@@ -1,12 +1,12 @@
 # bio-workflow-eval
 
-A small eval harness for testing whether a model can reason well across multi-step biology tasks — not just produce a correct answer, but decide *what to do next* given incomplete or conflicting evidence.
+A small eval harness for testing model reasoning across multi-step biology tasks — not just produce a correct answer, but decide *what to do next* given incomplete or conflicting evidence.
 
 ---
 
 ## Why
 
-Most biology benchmarks ask "what is the answer?" Real scientific workflows don't work like that. A system looking at evidence should sometimes say *I need more data* or *this is conflicting, I can't commit* instead of always trying to answer. This project makes those decisions testable.
+Most biology benchmarks ask something like "what is the answer" but real scientific workflows don't work like that. A system looking at evidence should sometimes analyze and think about if it needs more info instead of always just trying to answer.
 
 The four decisions every task asks for:
 
@@ -108,11 +108,7 @@ Each task has 2–5 evidence snippets, a correctness label (`sufficient` / `insu
 
 ## Limitations
 
-This is a prototype. Be honest about what it is:
-
 - 16 tasks is too small for statistical claims
 - scoring is heuristic, not peer-reviewed
 - the dummy baseline is intentionally bad — it is not a scientific comparison
 - failure labels use keyword heuristics and will miss edge cases
-
-Good for: internal research, exploring failure modes, extending toward larger evals or retrieval-augmented setups.
