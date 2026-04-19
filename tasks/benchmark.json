@@ -1,0 +1,272 @@
+[
+  {
+    "task_id": "bio001",
+    "domain": "cancer_biology",
+    "question": "Does KRAS G12D mutation alone predict response to MEK inhibitor therapy in pancreatic ductal adenocarcinoma?",
+    "scenario": "A researcher is reviewing two recent trial results for a KRAS G12D PDAC patient cohort and must decide whether to recommend MEK inhibitor monotherapy.",
+    "evidence": [
+      "KRAS G12D is the most common oncogenic mutation in pancreatic ductal adenocarcinoma, found in ~40% of cases.",
+      "A phase II trial of selumetinib (MEK inhibitor) in KRAS-mutant PDAC showed a median PFS of 2.1 months with no objective responses.",
+      "Preclinical models demonstrate that KRAS G12D activates both MAPK and PI3K pathways, and MEK inhibition alone leads to PI3K rebound signaling.",
+      "A 2023 retrospective cohort found that co-occurring STK11 loss of function significantly worsened MEK inhibitor response across RAS-driven cancers."
+    ],
+    "evidence_status": "sufficient",
+    "correct_action": "answer",
+    "gold_answer": "No. KRAS G12D alone is insufficient to predict MEK inhibitor response. Clinical data show poor outcomes with MEK monotherapy, and pathway rebound through PI3K is a documented mechanism of resistance.",
+    "gold_reasoning": "The evidence sufficiently supports that KRAS G12D alone is not predictive. Clinical trial data, pathway biology, and co-mutation context all argue against MEK monotherapy based on this mutation alone.",
+    "expected_failure_labels": []
+  },
+  {
+    "task_id": "bio002",
+    "domain": "single_cell_biology",
+    "question": "Is the cluster of cells expressing high CD8A, GZMB, and low TCF7 a naive or exhausted T cell population?",
+    "scenario": "A single-cell RNA-seq dataset of tumor-infiltrating lymphocytes has been clustered. The lead researcher must annotate a specific cluster before writing the methods section.",
+    "evidence": [
+      "Cluster 4 shows high CD8A (mean normalized expression 3.2), high GZMB (granzyme B, mean 2.8), low TCF7 (mean 0.3).",
+      "Naive CD8+ T cells classically express high TCF7, CCR7, and low effector markers like GZMB.",
+      "Terminally exhausted T cells in tumors are characterized by high GZMB or PRF1 alongside low TCF7, high TOX, and PD-1 (PDCD1) expression.",
+      "Effector memory T cells can also show high GZMB and low TCF7 but typically retain cytotoxic function and lack exhaustion markers like TOX or LAG3."
+    ],
+    "evidence_status": "insufficient",
+    "correct_action": "retrieve_more",
+    "gold_answer": null,
+    "gold_reasoning": "The cluster matches criteria for both exhausted and effector memory T cells. TOX, PD-1, LAG3, and functional assay data are needed to distinguish. Cannot annotate definitively without additional markers.",
+    "expected_failure_labels": ["answered_too_early", "shallow_evidence_use"]
+  },
+  {
+    "task_id": "bio003",
+    "domain": "pathway_mechanism",
+    "question": "Does phosphorylation of PTEN at Ser380 increase or decrease its tumor-suppressive activity?",
+    "scenario": "A biochemist is writing a grant discussing a PTEN mutant with impaired phosphorylation at Ser380. They need to determine whether this impairment is activating or inactivating.",
+    "evidence": [
+      "PTEN phosphorylation at Ser380/Thr382/Thr383 by CK2 promotes a closed, inactive conformation and reduces membrane association.",
+      "A 2019 study showed that PTEN-S380A mutants (phosphomimetic-deficient) exhibit increased lipid phosphatase activity and stronger PI3K pathway suppression.",
+      "One contradicting report from 2016 using cell-free systems argued that Ser380 phosphorylation stabilizes PTEN protein levels, potentially maintaining total PTEN activity.",
+      "Proteasomal degradation of PTEN is linked to its ubiquitination, which is facilitated by NEDD4-1 binding — an interaction reduced when PTEN is phosphorylated at the C-tail."
+    ],
+    "evidence_status": "conflicting",
+    "correct_action": "defer",
+    "gold_answer": null,
+    "gold_reasoning": "Evidence is genuinely conflicting. The closed conformation / reduced membrane association model supports Ser380 phosphorylation as inactivating, but the stability argument creates ambiguity. Context-dependent resolution is needed.",
+    "expected_failure_labels": ["answered_too_early", "ignored_conflicting_evidence"]
+  },
+  {
+    "task_id": "bio004",
+    "domain": "experimental_design",
+    "question": "Should a researcher use bulk RNA-seq or single-cell RNA-seq to characterize the immune microenvironment of a 5mm biopsy core from a solid tumor?",
+    "scenario": "A clinical genomics team has a single 5mm biopsy from a patient's primary tumor. Budget is constrained. They want to understand which immune cell types are present and their activation states.",
+    "evidence": [
+      "Bulk RNA-seq averages gene expression across all cells in the sample, losing cell-type resolution in heterogeneous tissues.",
+      "Single-cell RNA-seq (scRNA-seq) resolves individual cell transcriptomes but requires fresh viable cells and typically needs 50,000–500,000 cells minimum for good cluster resolution.",
+      "A 5mm biopsy core from a solid tumor typically yields 50,000–200,000 cells, but viability after transport and disaggregation may drop to 40–70%.",
+      "Deconvolution tools (e.g., CIBERSORT, xCell) can infer immune cell fractions from bulk RNA-seq using reference gene signatures, with reasonable accuracy for major immune subtypes."
+    ],
+    "evidence_status": "sufficient",
+    "correct_action": "answer",
+    "gold_answer": "Both approaches are viable. scRNA-seq provides superior cell-type resolution and activation state information, but is high-risk given biopsy size and viability concerns. Bulk RNA-seq with deconvolution is a lower-risk, lower-resolution alternative. If viability cannot be confirmed pre-sequencing, bulk RNA-seq is safer.",
+    "gold_reasoning": "Evidence covers both approaches faithfully. The tradeoff is resolution vs. reliability given physical constraints. A nuanced recommendation is supportable from the evidence.",
+    "expected_failure_labels": []
+  },
+  {
+    "task_id": "bio005",
+    "domain": "gene_expression",
+    "question": "Does the observed 3.1-fold upregulation of MYC in doxorubicin-treated MCF7 cells indicate MYC is driving drug resistance?",
+    "scenario": "A lab has performed a perturbation RNA-seq experiment. MCF7 breast cancer cells treated with doxorubicin for 48h show MYC upregulation at the transcript level.",
+    "evidence": [
+      "MYC upregulation at mRNA level does not necessarily reflect protein-level activity due to post-transcriptional and post-translational regulation.",
+      "Doxorubicin induces widespread transcriptional stress responses including activation of stress-responsive transcription factors, some of which co-regulate MYC promoter elements.",
+      "Published studies report mixed findings on MYC's role in anthracycline resistance: some show MYC overexpression sensitizes cells to apoptosis, others link it to resistance via BCL2 upregulation."
+    ],
+    "evidence_status": "conflicting",
+    "correct_action": "retrieve_more",
+    "gold_answer": null,
+    "gold_reasoning": "The mRNA-level data alone is insufficient and the literature is conflicting. Protein-level MYC data, ChIP-seq for MYC targets, and functional knockdown experiments are needed before concluding MYC is driving resistance.",
+    "expected_failure_labels": ["answered_too_early", "unsupported_biological_claim"]
+  },
+  {
+    "task_id": "bio006",
+    "domain": "cancer_biology",
+    "question": "Is BRCA2 loss a likely explanation for the homologous recombination deficiency (HRD) signature observed in this ovarian cancer sample?",
+    "scenario": "A genomic pathology lab receives a tumor WGS report showing HRD-high score (65) and a loss-of-heterozygosity (LOH) pattern. The report also shows no deleterious BRCA1/2 germline mutations, but a somatic BRCA2 promoter hypermethylation.",
+    "evidence": [
+      "BRCA2 promoter hypermethylation causes epigenetic silencing of BRCA2 expression, effectively mimicking BRCA2 loss at the functional level.",
+      "HRD scoring (via methods like HRDetect or Myriad myChoice) captures genomic scars from past HR deficiency; a score of 65 is above the clinical threshold of 42 used by some labs.",
+      "Somatic hypermethylation of BRCA1 is a well-established cause of BRCA1-mediated HRD in ovarian cancer; BRCA2 promoter methylation is documented but less commonly reported.",
+      "Other causes of HRD include PALB2 mutations, RAD51 paralog mutations, and CDK12 inactivation — none mentioned in the report."
+    ],
+    "evidence_status": "sufficient",
+    "correct_action": "answer",
+    "gold_answer": "BRCA2 promoter hypermethylation is a plausible and documented mechanism explaining the HRD signature in this sample. While less common than BRCA1 methylation, it is a recognized cause. Functional assays or BRCA2 expression analysis would strengthen this interpretation.",
+    "gold_reasoning": "Evidence is sufficient to make a reasonable attribution. The mechanism is documented, the HRD score is above threshold, and the epigenetic explanation is coherent.",
+    "expected_failure_labels": []
+  },
+  {
+    "task_id": "bio007",
+    "domain": "single_cell_biology",
+    "question": "Can trajectory analysis reliably infer differentiation order starting from HSCs to mature erythrocytes using this dataset?",
+    "scenario": "A researcher runs Monocle3 on a 10X scRNA-seq dataset of bone marrow cells (n=8,400 cells). Clusters include HSCs, CMPs, MEPs, and erythroblasts. They want to publish a differentiation trajectory.",
+    "evidence": [
+      "Monocle3 uses reversed graph embedding to infer pseudotime; it requires a defined 'root' cell population to orient the trajectory.",
+      "The dataset contains 212 HSC-annotated cells, which is sufficient for root definition, but HSC annotation was done using only CD34 and CD38 marker expression without FACS validation.",
+      "Trajectory inference in scRNA-seq is a statistical model — it infers a likely ordering from snapshot data and does not directly observe cell state transitions over time."
+    ],
+    "evidence_status": "insufficient",
+    "correct_action": "retrieve_more",
+    "gold_answer": null,
+    "gold_reasoning": "Trajectory analysis is possible but validity depends on robustness of HSC annotation. Without FACS validation or additional markers (e.g., CD90, CD133), the root definition is uncertain. Additional validation data is needed before publishing the trajectory as ground truth.",
+    "expected_failure_labels": ["answered_too_early"]
+  },
+  {
+    "task_id": "bio008",
+    "domain": "pathway_mechanism",
+    "question": "Does WNT3A secreted by stromal cells activate canonical WNT/β-catenin signaling in adjacent tumor cells?",
+    "scenario": "A tumor microenvironment study finds stromal cells secreting WNT3A in proximity to WNT receptor-positive tumor cells. A junior researcher concludes this activates β-catenin in the tumor cells.",
+    "evidence": [
+      "WNT3A is a well-characterized activator of the canonical WNT/β-catenin pathway in cell lines expressing Frizzled receptors and LRP5/6 co-receptors.",
+      "Tumor cells in this study express FZD2 and FZD7 based on scRNA-seq data, both of which can transduce canonical WNT signals.",
+      "Paracrine WNT signaling efficacy depends on secretion, lipid modification by Porcupine, and the presence of WNT transport proteins (e.g., Wntless/WLS). WLS expression in stromal cells was not assessed.",
+      "No β-catenin nuclear localization, TOPFlash luciferase assay, or AXIN1 target gene data is shown in the current study."
+    ],
+    "evidence_status": "insufficient",
+    "correct_action": "retrieve_more",
+    "gold_answer": null,
+    "gold_reasoning": "While the ligand-receptor compatibility is plausible, actual pathway activation has not been demonstrated. WLS expression and functional readouts of β-catenin activity are missing. The conclusion is premature.",
+    "expected_failure_labels": ["answered_too_early", "unsupported_biological_claim"]
+  },
+  {
+    "task_id": "bio009",
+    "domain": "gene_expression",
+    "question": "Should the next experiment be a CRISPR knockout of STAT3 or a co-immunoprecipitation (co-IP) assay to test whether STAT3 directly binds the IL-6R promoter?",
+    "scenario": "A lab has ChIP-seq data showing STAT3 enrichment at the IL-6R promoter region. They want to determine whether this binding is functional and direct.",
+    "evidence": [
+      "ChIP-seq enrichment indicates STAT3 occupancy at the IL-6R locus under IL-6 stimulation conditions.",
+      "STAT3 is a transcription factor that binds DNA directly via its DNA-binding domain; it does not require an intermediate partner to contact promoter elements.",
+      "A co-IP assay tests protein-protein interactions, not protein-DNA binding. It would not directly address whether STAT3 binds the IL-6R promoter.",
+      "A CRISPR knockout of STAT3 would disrupt all STAT3 functions and would not demonstrate direct promoter binding specifically."
+    ],
+    "evidence_status": "sufficient",
+    "correct_action": "answer",
+    "gold_answer": "Neither experiment alone answers the specific question. For direct binding confirmation, a ChIP-qPCR with specific primer amplicons at the IL-6R promoter region, or an EMSA (electrophoretic mobility shift assay) using purified STAT3 protein, would be more appropriate. Co-IP tests protein-protein binding, not DNA binding. CRISPR KO tests necessity, not direct binding.",
+    "gold_reasoning": "The question is about a specific experimental logic error. The evidence clearly differentiates what each assay tests. The answer is a corrective one.",
+    "expected_failure_labels": []
+  },
+  {
+    "task_id": "bio010",
+    "domain": "pathology",
+    "question": "Based on the described histological and IHC features, is this consistent with a diagnosis of diffuse large B-cell lymphoma (DLBCL) or follicular lymphoma (FL)?",
+    "scenario": "A pathology resident reviews a lymph node biopsy report: the architecture is largely effaced, the cells are large with vesicular nuclei and prominent nucleoli, and IHC shows CD20+, CD10+, BCL6+, BCL2+, MUM1-, Ki67 70%.",
+    "evidence": [
+      "DLBCL classically presents with diffuse effacement of nodal architecture by large atypical lymphoid cells. GCB subtype is characterized by CD10+, BCL6+, MUM1-.",
+      "Follicular lymphoma shows a follicular (nodular) growth pattern, small to medium centrocytes, and typically lower proliferation index (Ki67 usually <30%).",
+      "The Hans algorithm classifies CD10+/BCL6+/MUM1- as GCB-type DLBCL.",
+      "BCL2 positivity in this context is notable; BCL2 overexpression in GCB DLBCL may reflect BCL2 rearrangement (t(14;18)) or amplification, which has prognostic implications."
+    ],
+    "evidence_status": "sufficient",
+    "correct_action": "answer",
+    "gold_answer": "The features are consistent with GCB-type DLBCL. The diffuse architecture, large cell morphology, high Ki67, and Hans algorithm result (CD10+/BCL6+/MUM1-) all support DLBCL over FL. FISH for BCL2/BCL6/MYC rearrangements is recommended given BCL2 positivity.",
+    "gold_reasoning": "Evidence maps cleanly to diagnostic criteria. Hans algorithm applies directly. The differential with FL is resolved by architecture and Ki67.",
+    "expected_failure_labels": []
+  },
+  {
+    "task_id": "bio011",
+    "domain": "cancer_biology",
+    "question": "Is there sufficient evidence to conclude that tumor mutational burden (TMB-high) predicts response to pembrolizumab in this small-cell lung cancer patient?",
+    "scenario": "An oncologist reviews a patient with relapsed SCLC. Next-gen sequencing shows TMB of 14 mutations/Mb (above the 10 mut/Mb FDA-approved threshold). PD-L1 expression is 1%.",
+    "evidence": [
+      "The FDA approved pembrolizumab for TMB-high (≥10 mut/Mb) solid tumors based on the KEYNOTE-158 study, which included a heterogeneous tumor cohort.",
+      "KEYNOTE-158 showed ORR of 29% in TMB-high patients vs 6% in TMB-low patients across 10 tumor types.",
+      "A specific analysis of SCLC in KEYNOTE-158 found that TMB did NOT significantly predict pembrolizumab response in SCLC (ORR ~9% regardless of TMB status).",
+      "PD-L1 expression is considered less predictive in SCLC compared to NSCLC; some SCLC trials have not shown a PD-L1 response correlation."
+    ],
+    "evidence_status": "conflicting",
+    "correct_action": "defer",
+    "gold_answer": null,
+    "gold_reasoning": "Evidence is directly conflicting: the FDA approval is tumor-agnostic, but the SCLC-specific data from the same trial shows no TMB predictive value in SCLC. This is a genuine clinical ambiguity requiring deeper discussion, not a simple yes/no.",
+    "expected_failure_labels": ["answered_too_early", "ignored_conflicting_evidence"]
+  },
+  {
+    "task_id": "bio012",
+    "domain": "gene_expression",
+    "question": "Is the differential gene expression between the treated and untreated groups reliable given n=2 biological replicates per condition?",
+    "scenario": "A lab performs bulk RNA-seq with n=2 biological replicates per condition (treated vs untreated). DESeq2 analysis returns 1,243 significant DEGs at FDR < 0.05. The PI wants to submit these results for publication.",
+    "evidence": [
+      "DESeq2 requires at least 2 replicates per condition to estimate dispersion, but statistical power and reliability of dispersion estimates improve substantially with n≥3.",
+      "With n=2, DESeq2 uses a pooled dispersion estimate that can inflate false positive rates if the true within-group variation is high.",
+      "A 2021 benchmarking study of bulk RNA-seq tools found that n=2 replicates led to FDR inflation of 2–5x in simulated datasets with moderate expression variability.",
+      "The ENCODE project recommends a minimum of 2 replicates for RNA-seq but notes that biological conclusions should be validated with orthogonal methods."
+    ],
+    "evidence_status": "sufficient",
+    "correct_action": "answer",
+    "gold_answer": "The DEG list is likely unreliable at n=2. While DESeq2 can run with 2 replicates, statistical power and dispersion estimates are significantly compromised. FDR inflation is a documented risk. Results should be treated as exploratory, not definitive, and an n≥3 replication or orthogonal validation (e.g., qPCR on top hits) is strongly recommended before submission.",
+    "gold_reasoning": "Evidence consistently and clearly points to the unreliability of n=2 RNA-seq as a publication-grade analysis. Recommendation is well-supported.",
+    "expected_failure_labels": []
+  },
+  {
+    "task_id": "bio013",
+    "domain": "single_cell_biology",
+    "question": "Does the detected ambient RNA contamination at a 15% estimated rate invalidate the scRNA-seq cell type annotations in this dataset?",
+    "scenario": "A computational biologist runs SoupX on a 10X scRNA-seq dataset and estimates 15% ambient RNA contamination. The study PI asks whether this means their cell type calls are wrong.",
+    "evidence": [
+      "SoupX estimated 15% contamination rate, which is above the commonly cited 'comfortable' threshold of ~10% but within the range seen in dissociation-heavy protocols.",
+      "Ambient RNA contamination can cause spillover of highly expressed cell-type-specific genes (e.g., hemoglobin from red blood cells into other clusters), potentially confounding cell type annotation.",
+      "At 15% contamination, the impact on cell type annotation depends heavily on which genes dominate the ambient pool. If ambient RNA is composed of broadly expressed housekeeping genes, impact on differential markers is minimal.",
+      "SoupX correction reduces but does not eliminate contamination. Post-correction doublet detection and cluster marker validation are recommended before finalizing annotations."
+    ],
+    "evidence_status": "insufficient",
+    "correct_action": "retrieve_more",
+    "gold_answer": null,
+    "gold_reasoning": "Whether 15% contamination invalidates annotations depends on the composition of the ambient pool — which is not given. Examining the ambient RNA gene composition and re-checking cluster markers post-correction is needed.",
+    "expected_failure_labels": ["answered_too_early"]
+  },
+  {
+    "task_id": "bio014",
+    "domain": "pathway_mechanism",
+    "question": "Should mTORC1 or mTORC2 inhibition be prioritized to block Akt-driven proliferation in this PTEN-null glioblastoma cell line?",
+    "scenario": "A neuro-oncology lab works on a PTEN-null GBM line. Akt is constitutively active. They want to understand which mTOR complex is more important to target.",
+    "evidence": [
+      "PTEN loss leads to elevated PIP3 levels, which recruits Akt to the membrane and facilitates its activation by PDK1 (Thr308) and mTORC2 (Ser473).",
+      "mTORC1 is a downstream effector of Akt and controls protein synthesis via S6K1 and 4E-BP1. Inhibiting mTORC1 alone (e.g., rapamycin) can cause feedback Akt re-activation via relieved S6K1-IRS1 negative feedback.",
+      "mTORC2 phosphorylates Akt at Ser473, which is required for full Akt activation and substrate selectivity toward FOXO1/3 and GSK3.",
+      "Dual mTORC1/2 inhibitors (e.g., Torin1, OSI-027) have shown greater anti-proliferative effects in PTEN-null GBM models compared to rapamycin analogs."
+    ],
+    "evidence_status": "sufficient",
+    "correct_action": "answer",
+    "gold_answer": "mTORC2 or dual mTORC1/2 inhibition should be prioritized. mTORC1-only inhibition risks Akt reactivation through feedback loops. mTORC2 is the upstream activator of Akt Ser473, and dual inhibition demonstrates superior potency in PTEN-null GBM models.",
+    "gold_reasoning": "Evidence directly addresses the mechanism and experimental data on inhibitor strategies. The feedback loop from mTORC1 inhibition is a critical insight that tips the recommendation.",
+    "expected_failure_labels": []
+  },
+  {
+    "task_id": "bio015",
+    "domain": "experimental_design",
+    "question": "Is a Western blot sufficient to confirm that CRISPR editing successfully knocked out ATM protein expression in this cell line?",
+    "scenario": "A lab uses CRISPR-Cas9 to knock out ATM in HEK293T cells. They observe loss of the ATM band on Western blot in 3 out of 4 clones and want to confirm knockout.",
+    "evidence": [
+      "Western blot detects protein expression but does not confirm the underlying genomic editing event (e.g., indel type, exon affected, zygosity).",
+      "Some CRISPR indels produce frameshifts that truncate the protein but may leave a smaller, potentially functional ATM fragment not detected by the primary antibody epitope.",
+      "Sanger sequencing or next-gen sequencing of the target locus confirms the presence and nature of indels at the DNA level.",
+      "For functional confirmation, ATM kinase activity can be assessed by measuring phospho-KAP1 or phospho-CHK2 response to ionizing radiation."
+    ],
+    "evidence_status": "sufficient",
+    "correct_action": "answer",
+    "gold_answer": "Western blot alone is not sufficient. It cannot confirm the genomic editing event or rule out truncated protein expression. Sanger or amplicon sequencing of the target locus is needed for confirmation. For functional studies, ATM kinase activity validation (e.g., phospho-KAP1 after IR) is also recommended.",
+    "gold_reasoning": "Evidence clearly establishes the limitations of Western blot for CRISPR validation. The recommendation is well-grounded and actionable.",
+    "expected_failure_labels": []
+  },
+  {
+    "task_id": "bio016",
+    "domain": "cancer_biology",
+    "question": "Can the published TCGA expression signature for EMT be applied directly to classify epithelial-mesenchymal transition status in a new single-cell dataset?",
+    "scenario": "A researcher wants to score cells in a scRNA-seq dataset for EMT status using a previously published bulk RNA-seq-derived EMT signature from TCGA.",
+    "evidence": [
+      "Bulk RNA-seq EMT signatures are derived from averaged expression across thousands of cells per sample; they may not capture the heterogeneity and subtle transitions visible in single-cell data.",
+      "Single-cell EMT studies have shown that cells occupy a spectrum of hybrid E/M states not captured by binary bulk signatures.",
+      "Gene signature scoring methods (e.g., AUCell, UCell) can apply bulk-derived signatures to single-cell data and produce cell-level scores, but calibration and interpretation require care.",
+      "A 2022 benchmark of EMT scoring in scRNA-seq found moderate concordance between bulk and single-cell EMT scores, with high variability in intermediate-state cells."
+    ],
+    "evidence_status": "sufficient",
+    "correct_action": "answer",
+    "gold_answer": "The TCGA signature can be applied using tools like AUCell or UCell, but results should be interpreted cautiously. Bulk signatures may not resolve hybrid E/M states. The researcher should validate with known EMT markers and acknowledge the limitation of bulk-to-single-cell transfer in the manuscript.",
+    "gold_reasoning": "Evidence gives sufficient guidance on applicability and known limitations. A nuanced yes-with-caveats is the appropriate answer.",
+    "expected_failure_labels": []
+  }
+]
