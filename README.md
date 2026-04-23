@@ -1,5 +1,7 @@
 # bio-workflow-eval
 
+![Dashboard showing evaluation results](assets/dashboard.png)
+
 A small Python tool to test whether AI models can make good scientific decisions. 
 
 Most biology benchmarks ask "what is the answer?". But real scientific workflows don't work like that. If a model looks at evidence, it should know when to say "I need more data" or "these papers are conflicting" rather than just guessing. This project tests exactly that.
