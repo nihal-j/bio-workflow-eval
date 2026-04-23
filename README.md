@@ -12,7 +12,7 @@ The tool tests if a model can make four decisions:
 3. `defer`: The evidence is too messy or conflicting to answer.
 4. `use_tool`: It needs a specific experiment or tool.
 
-Results with Claude 3 Haiku can be found below.
+Results with Claude 3 Haiku can be found in the evaluation below.
 
 ---
 
