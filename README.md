@@ -12,6 +12,8 @@ The tool tests if a model can make four decisions:
 3. `defer`: The evidence is too messy or conflicting to answer.
 4. `use_tool`: It needs a specific experiment or tool.
 
+Results with Claude 3 Haiku can be found below.
+
 ---
 
 ## Structure
@@ -83,6 +85,19 @@ If it messes up, it gets tagged with labels like `answered_too_early` or `ignore
 There are 16 fake biology scenarios covering cancer biology, single-cell analysis, gene expression, and pathology. 
 
 Some scenarios have enough evidence to answer. Some don't. Some have evidence that contradicts itself. The goal is to see if the AI can tell the difference.
+
+---
+
+## Example run on Claude 3 Haiku via OpenRouter
+
+| Metric | Score |
+|--------|-------|
+| Overall | 0.777 |
+| Decision Quality | 0.500 |
+| Evidence Grounding | 0.859 |
+| Conflict Handling | 1.000 |
+
+The model handled evidence well and never missed a real conflict, but it was over cautious and hedging on some pretty clear-cut cases — often saying `retrieve_more` or `defer` when the evidence was actually sufficient to answer. That's the opposite failure mode from the dummy baseline, and exactly the kind of thing this harness was meant to surface and a result I find very interesting.
 
 ---
 
