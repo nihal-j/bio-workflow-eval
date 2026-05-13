@@ -14,6 +14,8 @@ The tool tests if a model can make four decisions:
 
 Results with Claude 3 Haiku can be found in the evaluation below.
 
+This is a small prototype, not a validated benchmark.
+
 ---
 
 ## Structure
